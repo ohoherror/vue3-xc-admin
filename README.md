@@ -21,6 +21,6 @@
 ### 启动
 
 ```shell
-  yarn
-  yarn start
+  npm install
+  npm run dev
 ```
