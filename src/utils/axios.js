@@ -4,7 +4,8 @@ import router from '../router'
 import { localGet, getCookie } from './index'
 import config from '../../config'
 
-// 这边由于后端没有区分测试和正式，姑且都写成一个接口。
+
+console.log(import.meta.env.MODE)
 axios.defaults.baseURL = config[import.meta.env.MODE].baseUrl
 // 携带 cookie，对目前的项目没有什么作用，因为我们是 token 鉴权
 axios.defaults.withCredentials = true
