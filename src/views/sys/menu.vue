@@ -14,7 +14,7 @@
 
 </template>
 
-<script setup name="菜单管理">
+<script setup >
 import listTable from '@/views/listTable/listTable.vue'
 
 function exportList(scope) {

@@ -52,7 +52,7 @@ getDataList();
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts" >
 import { config } from './config'
 import { onMounted, ref, computed, watch, reactive } from 'vue'
 import { toRaw } from '@vue/reactivity'
@@ -74,9 +74,9 @@ const dataForm = reactive({
     limit: 10,
 })
 
-const pageConfig = reactive({})
-const serachList = reactive([])
-const dataListSelections = reactive([])
+const pageConfig: any = reactive({})
+const serachList: any = reactive([])
+const dataListSelections: any = reactive([])
 const dataListLoading = ref(false)
 const dataList = ref([])
 const totalCount = ref()
@@ -85,7 +85,7 @@ function initConfig() {
     for (let key in config[pageKey.value]) {
         pageConfig[key] = config[pageKey.value][key]
     }
-    let arr = []
+    let arr: any[] = []
     //搜索项
     arr = pageConfig.tableList.filter((ele) => {
         return ele.serach
@@ -108,7 +108,7 @@ function initConfig() {
 // 获取数据列表
 function getDataList() {
     dataListLoading.value = true;
-    let obj = {};
+    let obj: any = {};
     //去掉为空的属性
     for (let key in dataForm) {
         if (dataForm[key]) {
@@ -176,7 +176,7 @@ function getClear() {
 }
 // 清空时间
 function getTimer(item) {
-    if (!dataForm[item.serachKey] || dataForm === 0) {
+    if (!dataForm[item.serachKey]) {
         dataForm[item.serachKey1] = "";
         dataForm[item.serachKey2] = "";
         return;
@@ -186,12 +186,12 @@ function getTimer(item) {
 }
 //清空复选框
 function clearSelection() {
-    $refs.multipleTable.clearSelection();
+
 }
 // 每页数
 function sizeChangeHandle(val) {
     dataForm.limit = val.toString();
-    dataForm.page = "1";
+    dataForm.page = 1;
     getDataList();
 }
 // 当前页
@@ -202,22 +202,12 @@ function currentChangeHandle(val) {
 // 多 选
 function selectionChangeHandle(val) {
     // console.log(val)
-    dataListSelections = val;
-    $emit('selectionChangeHandle', val)
+
 }
-//判断可否选择
-function selected(row) {
-    // console.log(pageConfig.disableRow)
-    // console.log(row)
-    // if (pageConfig.disableRow) {
-    //     let Func = pageConfig.disableRow
-    //     return !Func(row)
-    // }
-    return true
-}
+
 //清除复选框
 function clearSelectionHandle() {
-    $refs.multipleTable.clearSelection()
+
 }
 
 </script>
