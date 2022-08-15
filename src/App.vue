@@ -2,13 +2,13 @@
   <div id="app">
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
-    <div v-if="state.showMenu">
+    <div>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="200px" v-if="state.showMenu">
           <leftNav></leftNav>
         </el-aside>
         <el-container>
-          <el-header v-if="state.currentPath !== '/login' && state.currentPath !== 'home'">
+          <el-header v-if="state.showMenu">
             <topNav></topNav>
           </el-header>
           <el-main class="mt-20">

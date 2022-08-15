@@ -45,9 +45,9 @@ getDataList();
                     </template>
                 </el-table-column>
             </el-table>
-            <!-- <el-pagination v-model:currentPage="dataForm.page" :page-size="dataForm.limit"
-                :page-sizes="[10, 20, 50, 100, 200]" layout="total, prev, pager, next" :total="totalCount"
-                @size-change="sizeChangeHandle" @current-change="currentChangeHandle" /> -->
+            <el-pagination v-model:currentPage="dataForm.page" v-model:page-size="dataForm.limit"
+                :page-sizes="[50, 100, 200, 300, 400]" layout="total, prev, pager, next" :total="totalCount"
+                @size-change="sizeChangeHandle" @current-change="currentChangeHandle" />
         </div>
     </div>
 </template>
@@ -117,9 +117,7 @@ function getDataList() {
     }
     obj.page = obj.page.toString()
     obj.limit = obj.limit.toString()
-
     pageConfig.listApi(obj).then((data) => {
-
         if (data && data.code === 200) {
 
             dataList.value = data?.page?.list || data.data.list;
@@ -226,7 +224,6 @@ function clearSelectionHandle() {
 
 <style lang="scss" scoped>
 body {
-
 
     .el-table th.gutter {
 
