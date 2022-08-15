@@ -3,8 +3,6 @@
         <el-col>
             <el-menu :collapse="isCollapse" class="el-menu-vertical-demo" :default-active="curPath" @open="handleOpen"
                 @close="handleClose">
-                <!-- <MenuItem :menuList="menuList" @toMenu="toMenu">
-                </MenuItem> -->
                 <el-sub-menu v-for="item in menuList" :key="item.menuId" :index="item.menuId.toString()">
                     <template #title>
                         <span>{{ item.name }}</span>

@@ -3,7 +3,7 @@
         <el-menu-item v-if='!item.children' @click="toMenu(item)" :key="'/' + item.url" :index="'/' + item.url">
             <span>{{ item.name }}</span>
         </el-menu-item>
-        <el-sub-menu index="1-4" v-else>
+        <el-sub-menu :index="item.menuId.toString()" v-else>
             <template #title><span>{{ item.name }}</span></template>
             <menu-item :arrList="item.children" @toMenu="toMenu"></menu-item>
         </el-sub-menu>
@@ -23,8 +23,8 @@ const props = defineProps({
 const router = useRouter()
 
 const emit = defineEmits(["toMenu"])
-
 let store = useStore()
+
 const toMenu = (ele) => {
     let checkedList = store.state.tabList
     console.log(checkedList)
