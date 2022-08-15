@@ -8,7 +8,7 @@
           <leftNav></leftNav>
         </el-aside>
         <el-container>
-          <el-header>
+          <el-header v-if="state.currentPath !== '/login' && state.currentPath !== 'home'">
             <topNav></topNav>
           </el-header>
           <el-main class="mt-20">
@@ -51,7 +51,7 @@ if (window.history && window.history.pushState) {
   }, false);
 }
 const unwatch = router.beforeEach((to, from, next) => {
-  console.log(to)
+  console.log(to + "to")
   if (to.path == '/login') {
     // 如果路径是 /login 则正常执行
     next()
@@ -67,6 +67,7 @@ const unwatch = router.beforeEach((to, from, next) => {
   }
   state.showMenu = !noMenu.includes(to.path)
   state.currentPath = to.path
+  console.log(state.currentPath)
   // document.title = pathMap[to.name]
 })
 </script>

@@ -13,6 +13,24 @@ const routes = [
         },
     },
     {
+        name: 'sys-children',
+        path: '/sys/children',
+        component: () => import('../views/sys/children.vue'),
+        meta: {
+            title: '子系统管理',
+            keepAlive: true,
+        },
+    },
+    {
+        name: 'sys-test',
+        path: '/sys/test',
+        component: () => import('../views/sys/test.vue'),
+        meta: {
+            title: '测试管理',
+            keepAlive: true,
+        },
+    },
+    {
         name: 'sys-role',
         path: '/sys/role',
         component: () => import('../views/sys/role.vue'),
