@@ -22,7 +22,7 @@ import { useStore } from 'vuex';
 import { toRaw } from '@vue/reactivity'
 import { listMenu } from '../../../config/menu'
 import menuItem from './menuItem.vue'
-import MenuItem from './menuItem.vue'
+
 const router = useRouter()
 const menuList = ref([])
 
