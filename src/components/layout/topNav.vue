@@ -29,15 +29,6 @@ const editableTabs = ref<any[]>([])
 watch(() => router.currentRoute.value.path, (newValue, oldValue) => {
     console.log('watch', newValue);
     editableTabs.value = toRaw(store.state.tabList)
-    editableTabs.value.map(ele => {
-        let path = '/' + ele.url
-        if (path === newValue) {
-            ele.actived = true
-        } else {
-            ele.actived = false
-        }
-
-    })
     const tabs = editableTabs.value as any[]
     tabs.forEach((tab, index) => {
         let path = '/' + tab.url
@@ -47,10 +38,7 @@ watch(() => router.currentRoute.value.path, (newValue, oldValue) => {
     })
 }, { immediate: true })
 
-const getParam = (Component, route) => {
-    console.log(Component)
-    console.log(route)
-}
+
 const handleClick = (tab: any, event: Event) => {
     let name = toRaw(tab.props).name
     let list = toRaw(store.state.tabList)
@@ -72,7 +60,6 @@ const removeTab = (targetName: string) => {
         tabs.forEach((tab, index) => {
             if (tab.name === targetName) {
                 const nextTab = tabs[index + 1] || tabs[index - 1]
-
                 if (nextTab) {
                     activeName = nextTab.name
                     router.push({ path: '/' + nextTab.url })
