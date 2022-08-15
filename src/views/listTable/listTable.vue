@@ -16,7 +16,7 @@
                 </el-form-item>
                 <div style="padding-right:100px;float: right; " v-if="serachList.length > 0">
                     <el-button @click="
-    dataForm.page = '1';
+    dataForm.page = 1;
 getDataList();
                     ">查询</el-button>
                     <el-button @click="getClear()">清空</el-button>
@@ -26,8 +26,9 @@ getDataList();
                 <!-- 操作 -->
                 <slot name="operation" :dataForm="dataForm" :dataListSelections="dataListSelections"></slot>
             </div>
-            <el-table height="600" class="font-normal" :data="dataList" border @selection-change="selectionChangeHandle"
+            <el-table height="600" class="font-normal" :data="dataList" border @selection-change="handleSelectionChange"
                 style="width: 100%">
+                <el-table-column type="selection" width="55" />
                 <!-- <el-table-column type="selection" :key="Math.random()" v-if="pageConfig.hasSelect" header-align="center"
                     align="center" width="50" :selectable="selected">
                 </el-table-column> -->
@@ -200,9 +201,12 @@ function currentChangeHandle(val) {
     getDataList();
 }
 // 多 选
-function selectionChangeHandle(val) {
-    // console.log(val)
-
+function handleSelectionChange(val) {
+    console.log(val)
+    //清空数组
+    dataListSelections.length = 0
+    dataListSelections.push(val)
+    console.log(dataListSelections)
 }
 
 //清除复选框
