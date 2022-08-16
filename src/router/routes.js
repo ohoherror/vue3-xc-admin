@@ -24,7 +24,7 @@ const routes = [
     {
         name: 'sys-test',
         path: '/sys/test',
-        component: () => import('../views/sys/test.vue'),
+        component: () => import('../views/sys/sku.vue'),
         meta: {
             title: '测试管理',
             keepAlive: true,

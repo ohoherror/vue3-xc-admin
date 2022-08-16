@@ -1,9 +1,9 @@
-<!-- <template>
+<template>
     <div id="app">
         <h3>前端SKU实现</h3>
-        <div v-for="(item, index) in specList" :key="index">
+        <div class="mt-20" v-for="(item, index) in specList" :key="index">
             <div class='title'>{{ item.title }}</div>
-            <div class='spec'>
+            <div class='spec mt-10'>
                 <div class='spec-item' v-for="(its, ins) in item.list" :key="its.name + ins">
                     <span @click="changeSpec(item.title, its.name, its.able)"
                         :class="[selectSpec[item.title] === its.name ? 'active' : '', its.able ? '' : 'disabled']">{{
@@ -26,14 +26,15 @@ const skuList = ref([])
 const selectSpec = reactive({})
 
 onMounted(() => {
+    console.log(skuList1)
     //  第二步  处理数据
+    specList1.forEach(item => {
+        selectSpec[item.title] = ''
+    })
     skuList.value = skuList1
-    // 初始化选择数据的对象 
-
-    // 将规格数据处理成我们视图所需要的数据类型 
-    specList.value = specList.map(item => {
+    specList.value = specList1.map(item => {
         return {
-            title: item.title,
+            title: item.title ? item.title : "",
             list: item.list.map(its => {
                 return {
                     name: its,
@@ -44,23 +45,21 @@ onMounted(() => {
             })
         }
     })
-    // 注释的调试看逻辑代码
-    // this.selectSpec = {
-    //   '颜色':'',
-    //   '套餐':'套餐一',
-    //   '内存':'64G'
-    // }
+    console.log(specList.value)
+    //注释的调试看逻辑代码
+
     // this.isAble('颜色', '红色')
 })
 // 核心判断逻辑 
 // 判断规格是否可以被选择  核心函数 key当前的规格的title   value规格值
-isAble(key, value) {
+function isAble(key, value) {
     // 深拷贝 避免被影响  
-    var copySelectSpec = JSON.parse(JSON.stringify(this.selectSpec));
+    var copySelectSpec = JSON.parse(JSON.stringify(selectSpec));
     // 用对象的好处就在这了 直接赋值当前验证项
     copySelectSpec[key] = value;
+    console.log(copySelectSpec)
     // 用数组的 some 方法 效率高 符合条件直接退出循环
-    let flag = this.skuList.some(item => {
+    let flag = skuList1.some(item => {
         // 条件判断 核心逻辑判断
         // console.log(item)
         var i = 0;
@@ -76,23 +75,25 @@ isAble(key, value) {
         }
         // 符合下面条件就退出了 不符合会一直循环知道循环结束没有符合的条件就 return false 了 
         // console.log(i) // 注释的调试看逻辑代码
-        return i == specList.length
+        console.log(specList.value)
+        return i == 3
     })
     console.log(flag)
     return flag
 }
+
 // 点击事件
-changeSpec(key, value, able) {
+function changeSpec(key, value, able) {
     if (!able) return
-    if (this.selectSpec[key] === value) {
-        this.selectSpec[key] = ''
+    if (selectSpec[key] === value) {
+        selectSpec[key] = ''
     } else {
-        this.selectSpec[key] = value
+        selectSpec[key] = value
     }
     // forEach循环改变原数组 
-    this.specList.forEach(item => {
+    specList.value.forEach(item => {
         item.list.forEach(its => {
-            its.able = this.isAble(item.title, its.name);
+            its.able = isAble(item.title, its.name);
             console.log(its.name, its.able);
         });
     });
@@ -127,4 +128,4 @@ changeSpec(key, value, able) {
     background-color: #fff;
     border-color: #ebeef5;
 }
-</style> -->
+</style>
