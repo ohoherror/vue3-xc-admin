@@ -37,7 +37,7 @@ export const listMenu = [{
                     parentName: null,
                     perms: null,
                     type: 1,
-                    url: "sys/children",
+
                 }
             ],
             menuId: 3,
@@ -48,7 +48,7 @@ export const listMenu = [{
             parentName: null,
             perms: null,
             type: 1,
-            url: "sys/role",
+
         },
         {
             icon: "menu",

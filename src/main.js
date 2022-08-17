@@ -7,8 +7,10 @@ import 'element-plus/dist/index.css'
 import './assets/scss/index.scss'
 import store from "./store"
 
+
 const app = createApp(App);
 app.use(router);
+
 
 app.use(store)
 

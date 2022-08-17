@@ -17,15 +17,25 @@
 
 </template>
 
-<script setup name="菜单管理">
+<script setup>
 import { specList1, skuList1 } from '../../../config/sku'
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, getCurrentInstance } from 'vue'
+import popmessage from "@/components/tip/index.js";
+import { load } from "@/components/loading/index.js";
 
 const specList = ref([])
 const skuList = ref([])
 const selectSpec = reactive({})
 
 onMounted(() => {
+    // popmessage({ type: "warn", str: "我eee是提示框" })
+    // test()
+    console.log(load)
+    // load.show();
+    load.show('登录中...');
+
+    //在加载完成时关闭
+
     console.log(skuList1)
     //  第二步  处理数据
     specList1.forEach(item => {
@@ -45,11 +55,16 @@ onMounted(() => {
             })
         }
     })
-    console.log(specList.value)
+    setTimeout(() => {
+        load.hide();
+    }, 5000);
+
+    // console.log(specList.value)
     //注释的调试看逻辑代码
 
     // this.isAble('颜色', '红色')
 })
+
 // 核心判断逻辑 
 // 判断规格是否可以被选择  核心函数 key当前的规格的title   value规格值
 function isAble(key, value) {
@@ -75,7 +90,7 @@ function isAble(key, value) {
         }
         // 符合下面条件就退出了 不符合会一直循环知道循环结束没有符合的条件就 return false 了 
         // console.log(i) // 注释的调试看逻辑代码
-        console.log(specList.value)
+        // console.log(specList.value)
         return i == 3
     })
     console.log(flag)
@@ -98,9 +113,6 @@ function changeSpec(key, value, able) {
         });
     });
 }
-
-
-
 </script>
 
 <style>
