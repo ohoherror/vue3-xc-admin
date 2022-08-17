@@ -7,6 +7,7 @@
                     <template #title>
                         <span>{{ item.name }}</span>
                     </template>
+                    <!-- 此处调用menu-item组件 -->
                     <menu-item :arrList="item.children"></menu-item>
                 </el-sub-menu>
             </el-menu>
@@ -48,12 +49,5 @@ const handleClose = () => {
 }
 const getNav = () => {
     menuList.value = listMenu
-    // let t = new Date().getTime()
-    // navApi.nav(t).then(res => {
-    //     menuList.value = res.menuList
-    //     if (res.code === 401) {
-    //         router.push({ path: 'login' })
-    //     }
-    // })
 }
 </script>
